@@ -1,7 +1,7 @@
 pragma solidity ^0.4.23;
 
 import "./Owned.sol";
-import "";
+import "./FixedsupplyToken.sol";
 
 contract Exchange is Owned {
 
@@ -61,7 +61,29 @@ contract Exchange is Owned {
 
     }
 
+    function getBuyOrderBook (string symbolName) constant returns(uint[], uint[]) {
+
+    } 
+
     
+    function getSellOrderBook (string symbolName) constant returns(uint[], uint[]) {
+
+    } 
+
+    function buyToken(string symbolName, uint priceinWei, uint amount) {
+
+    }
+
+    function sellToken(string symbolName, uint priceinWei, uint amount){
+
+    }
+
+
+    function cancelOrder(string symbolName, bool isSellOrder, uint priceinWei, uint offerKey) {
+        
+    }
+
+
 
 
 }
