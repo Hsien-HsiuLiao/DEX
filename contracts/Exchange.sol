@@ -3,7 +3,7 @@ pragma solidity ^0.4.23;
 import "./Owned.sol";
 import "./FixedsupplyToken.sol";
 
-contract Exchange is Owned {
+contract Exchange is owned {
 
     struct Token{
 
