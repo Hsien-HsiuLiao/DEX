@@ -7,6 +7,22 @@ contract Exchange is owned {
 
     struct Token{
 
+        string symbolName;
+        address tokencontract;
+
+        mapping(uint => OrderBook) buyBook;
+
+        uint curBuyPrice;
+        uint lowestBuyPrice;
+        uint amountBuyPrices;
+
+        mapping(uint => OrderBook) sellBook;
+
+        uint curSellPrice;
+        uint lowestSellPrice;
+        uint amountSellPrices;
+
+
     }
 
     struct Offer {
