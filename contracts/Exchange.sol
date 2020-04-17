@@ -27,9 +27,20 @@ contract Exchange is owned {
 
     struct Offer {
 
+        uint amount;
+        address who;
+
     }
 
     struct OrderBook {
+        uint higherPrice;
+        uint lowerPrice;
+
+        mapping(uint => offer) offers;
+
+        uint offers_key;
+        uint offers_length;
+
 
     }
 
@@ -66,16 +77,47 @@ contract Exchange is owned {
 
     function addToken(string symbolName, address erc20TokenAddress) onlyowner{
 
+        require(!hasToken(symbolName));
+        SymbolNameIndex++;
+        tokens[SymbolNameIndex].symbolName = symbolName;
+        tokens[SymbolNameIndex].tokencontract = erc20TokenAddress;
+
 
     }
 
     function hasToken(string symbolName) constant returns (bool){
+        uint index = getSymbolIndex(symbolName);
+        if(index==0)
+        {
+            return false;
+        }
+        return true;
 
     }
 
     function getSymbolIndex(string symbolName) internal returns (uint8){
 
+        for(uint8 =1; i<=SymbolIndexName; i++){
+            if(stringsEqual(tokens[i].symbolName, symbolName))
+                return i;
+
+        }
+        return 0;
+
     }
+
+    function stringsEqual(string storage _a, string memory _b) internal returns(bool)
+        bytes storage a= bytes(_a);
+        bytes memory b = bytes(_b);
+
+        if(a.length != b.length)
+        return false;
+
+        for (uint i=0; i<a.length; i++)
+            if (a[i]) != b[i]
+            return false;
+
+            return true;
 
     function getBuyOrderBook (string symbolName) constant returns(uint[], uint[]) {
 
