@@ -52,18 +52,28 @@ contract Exchange is owned {
 
 
     function depositEther () payable {
+        require(balanceEthforAddress[msg.sender] - amountinWei <= balanceEthforAddress[msg.sender]);
+        balanceEthforAddress[msg.sender] += msg.value;
+
 
     }
 
-    function withdrawEther(uint amount inWei){
+    function withdrawEther(uint amountinWei){
+                require(balanceEthforAddress[msg.sender] + msg.value >= balanceEthforAddress[msg.sender]);
+        balanceEthforAddress[msg.sender] -= amountinWei;
+        msg.sender.transfer(amountinWei);
 
     }
 
     function getEthBalanceinWei() constant returns (uint) {
-
+        return balanceEthforAddress[msg.sender];
     }
 
     function depositToken(string symbolName, uint amount) {
+
+    ERC20Interface token =     ERC20Interface(tokens[SymbolNameIndex].tokencontract);
+
+    tokenBalanceForAddress[msg.sender][SymbolNameIndex] += amount;
 
     }
 
