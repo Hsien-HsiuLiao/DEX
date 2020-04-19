@@ -70,18 +70,28 @@ contract Exchange is owned {
     }
 
     function depositToken(string symbolName, uint amount) {
+        uint symbolNameIndex = getSymbolIndexorthrow(symbolName);
+         require(tokenBalanceForAddress[msg.sender] + amount >= tokenBalanceForAddress[msg.sender]);
 
-    ERC20Interface token =     ERC20Interface(tokens[SymbolNameIndex].tokencontract);
+        ERC20Interface token = ERC20Interface(tokens[SymbolNameIndex].tokencontract);
 
-    tokenBalanceForAddress[msg.sender][SymbolNameIndex] += amount;
+        tokenBalanceForAddress[msg.sender][symbolNameIndex] += amount;
 
     }
 
     function withdrawToken(string symbolName, uint amount) {
+        uint symbolNameIndex = getSymbolIndexorthrow(symbolName);
+        require(tokenBalanceForAddress[msg.sender] - amount <= tokenBalanceForAddress[msg.sender]);
+
+        ERC20Interface token = ERC20Interface(tokens[SymbolNameIndex].tokencontract);
+
+        tokenBalanceForAddress[msg.sender][symbolNameIndex] -= amount;
 
     }
 
     function getBalance(string symbolName) view returns (uint) {
+        uint symbolNameIndex = getSymbolIndexorthrow(symbolName);
+        return tokenBalanceForAddress[msg.sender][symbolNameIndex];
 
     }
 
