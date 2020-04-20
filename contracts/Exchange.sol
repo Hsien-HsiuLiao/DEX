@@ -126,6 +126,11 @@ contract Exchange is owned {
 
     }
 
+    function getSymbolIndexorthrow(string symbolName) returns (uint8){
+        uint index = getSymbolIndex(symbolName);
+        return index;
+    }
+
     function stringsEqual(string storage _a, string memory _b) internal returns(bool)
         bytes storage a= bytes(_a);
         bytes memory b = bytes(_b);
@@ -149,6 +154,22 @@ contract Exchange is owned {
     } 
 
     function buyToken(string symbolName, uint priceinWei, uint amount) {
+        uint symbolNameIndex = getSymbolIndexorthrow(symbolName);
+        uint total_amount_ether_necessary = 0;
+        uint total_amount_ether_available = 0;
+
+        total_amount_ether_necessary = amount*priceinWei;
+
+        balanceEthforAddress[msg.sender] -= total_amount_ether_necessary;
+
+        if(tokens[tokenNameIndex].amountSellPrices == 0 || tokens[tokenNameIndex].curSellPrice > priceinWei)
+            {addBuyOffer(tokenNameIndex, priceinWei, amount, msg.sender);
+
+
+            LimitBuyOrderCreated(tokenNameIndex, msg.sender, amount, priceinWei, tokens[tokenNameIndex].buyBook[priceinWei].offers_length);
+            
+            }else
+            revert();
 
     }
 
