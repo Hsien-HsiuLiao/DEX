@@ -17,5 +17,16 @@ contract('MyToken', function(accounts){
         });
     });
 
+    it("second account should not own any tokens", function(){
+        var myTokenInstance;
+        return fixedSupplyToken.deployed().then(function(instance){
+            myTokenInstance = instance;
+            return myTokenInstance.balanceOf(accounts[1]);
+        }).then(function(balanceAccountOwner){
+            assert.equal(balanceAccountOwner.toNumber(), 0, "Total Amount of tokens is owned by some other account");
+        });
+    });
+
+    
 
 });
