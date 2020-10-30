@@ -1,18 +1,15 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.5.0;
 
-contract owned{
-
+contract owned {
     address owner;
 
-    modifier onlyowner(){
-        if (msg.sender == owner){
+    modifier onlyowner() {
+        require(msg.sender == owner);
         _;
-        }
+
     }
 
-    function owned(){
-        
+    constructor() public {
         owner = msg.sender;
-
     }
 }

@@ -1,21 +1,25 @@
+## Testing
+
 `npm install`
 
 `truffle compile`
 
-to do:
-
-- update contacts to solidity 0.5.0
-- redo Migrations.sol
-
 `ganache-cli`
-
-- updated truffle-config.js
-
 
 `truffle migrate --reset`
 
-npm run build --> node_modules?
-
 `npm run dev`
 
+![](./screenshots/ScreenShotInitial.png)
+
+
+
+### Changes
+- updated contracts to solidity 0.5.0
+- updated Migrations.sol
+- updated truffle-config.js
+
+#### Notes
 - https://ethereum.stackexchange.com/questions/30912/how-to-compare-strings-in-solidity
+
+npm run build --> node_modules?

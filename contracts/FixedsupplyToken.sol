@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.5.0;
 
 // ----------------------------------------------------------------------------------------------
 // Sample fixed supply token contract
@@ -59,7 +59,7 @@ contract FixedSupplyToken is ERC20Interface {
     }
 
     // Constructor
-    function FixedSupplyToken() public {
+    constructor() public {
         owner = msg.sender;
         balances[owner] = _totalSupply;
     }
